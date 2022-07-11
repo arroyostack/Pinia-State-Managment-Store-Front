@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Pinia, The Enjoyable Vue Store 
 
 [![](https://vueschool.io/media/bc6229f7525d1df7f87bd22604eaa468/Pinia_not-transparent.png)](https://vueschool.io/courses/pinia-the-enjoyable-vue-store)
@@ -36,3 +37,8 @@ npm run dev
 ```
 npm run build
 ```
+||||||| empty tree
+=======
+# Spotify-Quick-Search
+Quick search for spotify artists with no Spotify authorization. Check profile, listen to songs, fin events, discover related artists.
+>>>>>>> 6ff080f4e1d20844f5adae2e2e7ef78cf7dd94ff

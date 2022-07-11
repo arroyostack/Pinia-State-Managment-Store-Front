@@ -1,58 +1,118 @@
 <script setup>
 // imports
-import { ref } from "vue";
+import { onMounted, onUpdated, ref } from "vue";
 import CartItem from "./CartItem.vue";
 import { useCartStore } from "@/stores/CartStore";
 const cartStore = useCartStore();
 
+const handleCheckout = async () => {
+  cartStore.checkout();
+  cartStore.$reset();
+};
+
 // data
-const active = ref(false);
+let active = ref(false);
+const emit = defineEmits(["cartOn", "val"]);
+
+//emit
+const myEmit = () => {
+  active.value = true;
+  emit("cartOn", active.value);
+};
+
+const myEmitClosed = () => {
+  emit("cartOff");
+  active.value = false;
+};
 </script>
 <template>
-  <div class="relative">
-    <!-- Icon that always shows -->
-    <span class="cursor-pointer" @click="active = true">
-      <fa icon="shopping-cart" size="lg" class="text-gray-700" />
-      <div class="cart-count absolute">{{ cartStore.count }}</div>
+
+  <div>
+    <span class="" @click="myEmit">
+      <p>
+        <strong
+          ><i class="fa-solid fa-cart-shopping-fast"></i
+          >&#128722 {{ cartStore.count }}</strong
+        >
+      </p>
+      <div class=""></div>
     </span>
     <!-- Modal Overlay only shows when cart is clicked on -->
-    <AppModalOverlay :active="active" @close="active = false">
-      <div v-if="!cartStore.isEmpty">
-        <ul class="items-in-cart">
-          <CartItem
-            v-for="(items, name) in cartStore.grouped"
-            :key="name"
-            :product="items[0]"
-            :count="cartStore.groupCount(name)"
-            @updateCount="cartStore.setItemCount(items[0], $event)"
-            @clear="cartStore.clearItem(name)"
-          />
-        </ul>
-        <div class="flex justify-end text-2xl mb-5">
-          Total: <strong>${{ cartStore.total }}</strong>
-        </div>
-        <div class="flex justify-end">
-          <AppButton class="secondary mr-2" @click="cartStore.$reset()"
-            >Clear Cart</AppButton
+    <AppModalOverlay :active="active" @close="myEmitClosed">
+      <div class="bg-white py-6 sm:py-8 lg:py-12">
+        <div class="px-4 md:px-8 mx-auto">
+          <div
+            class="
+              flex flex-col
+              sm:flex-row
+              justify-between
+              items-center
+              bg-gray-100
+              rounded-lg
+              gap-4
+              p-4
+              md:p-8
+            "
           >
-          <AppButton class="primary" @click="cartStore.checkout"
-            >Checkout</AppButton
-          >
+            <div>
+              <div v-if="!cartStore.isEmpty">
+                <ul class="">
+                  <CartItem
+                    v-for="(items, name) in cartStore.grouped"
+                    :key="name"
+                    :product="items[0]"
+                    :count="cartStore.groupCount(name)"
+                    @updateCount="cartStore.setItemCount(items[0], $event)"
+                    @clear="cartStore.clearItem(name)"
+                  />
+                </ul>
+                <div class="">
+                  Total: <strong>total: {{ cartStore.total }}$</strong>
+                </div>
+
+                <AppButton class="" @click="cartStore.$reset()"
+                  >Clear Cart</AppButton
+                >
+                <br />
+                <a
+                  href="#"
+                  @click="handleCheckout"
+                  class="
+                    inline-block
+                    bg-cyan-700 
+                    hover:bg-green-400
+                    text-white text-sm
+                    md:text-base
+                    font-semibold
+                    text-center
+                    rounded-lg
+                    outline-none
+                    px-8
+                    py-3
+                    block
+                    mt-3
+                  "
+                  >Checkout</a
+                >
+              </div>
+
+              <!-- Uncomment and use condition to show when cart is empty -->
+              <div v-else><em>Cart is Empty</em></div>
+            </div>
+          </div>
         </div>
       </div>
-      <!-- Uncomment and use condition to show when cart is empty -->
-      <div v-else><em>Cart is Empty</em></div>
     </AppModalOverlay>
   </div>
 </template>
 <style lang="pcss" scoped>
-.items-in-cart{
+.items-in-cart {
   @apply mb-5;
 }
-.items-in-cart li{
+.items-in-cart li {
   @apply flex justify-between p-2;
 }
-.items-in-cart li:nth-of-type(even){
+.items-in-cart li:nth-of-type(even) {
   @apply bg-gray-300;
 }
 </style>

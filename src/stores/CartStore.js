@@ -1,13 +1,22 @@
-import { defineStore, acceptHMRUpdate } from "pinia";
-import { useLocalStorage } from "@vueuse/core";
-import { groupBy } from "lodash";
-import { useAuthUserStore } from "@/stores/AuthUserStore";
+import {
+  defineStore,
+  acceptHMRUpdate
+} from "pinia";
+import {
+  useLocalStorage
+} from "@vueuse/core";
+import {
+  groupBy
+} from "lodash";
+import {
+  useAuthUserStore
+} from "@/stores/AuthUserStore";
 export const useCartStore = defineStore("CartStore", {
-  historyEnabled: true,
+  // historyEnabled: true,
   state: () => {
     return {
-      items: useLocalStorage("CartStore:items", []),
-      test: "hello world",
+      // items: useLocalStorage("CartStore:items", [])
+      items: ("CartStore:items", [])
     };
   },
   getters: {
@@ -26,14 +35,19 @@ export const useCartStore = defineStore("CartStore", {
   actions: {
     checkout() {
       const authUserStore = useAuthUserStore();
+      authUserStore.$reset()
       alert(
         `${authUserStore.username} just bought ${this.count} items at a total of $${this.total}`
       );
+
+
     },
     addItems(count, item) {
       count = parseInt(count);
       for (let index = 0; index < count; index++) {
-        this.items.push({ ...item });
+        this.items.push({
+          ...item
+        });
       }
     },
     clearItem(itemName) {
@@ -46,6 +60,8 @@ export const useCartStore = defineStore("CartStore", {
   },
 });
 
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot));
-}
+// if (
+//   import.meta.hot) {
+//   import.meta.hot.accept(acceptHMRUpdate(useCartStore,
+//     import.meta.hot));
+// }

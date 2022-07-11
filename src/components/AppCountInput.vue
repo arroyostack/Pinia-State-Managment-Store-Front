@@ -13,7 +13,7 @@ const updateValue = (value) => {
 <template>
   <span>
     <button
-      class="cursor-pointer bg-gray-200 px-2 rounded-l"
+      class="bg-cyan-700 w-10 br-10 rounded-full hover:scale-110"
       @click="updateValue(modelValue > 0 ? modelValue - 1 : null)"
     >
       -
@@ -23,9 +23,17 @@ const updateValue = (value) => {
       type="number"
       min="0"
       @input="updateValue($event.target.value)"
+      class="text-center text-cyan-700 w-8 ml-5 mr-5 mb-3 rounded-full"
     />
     <button
-      class="bg-gray-200 px-2 rounded-r cursor-pointer"
+      class="
+        bg-cyan-700
+        dark:bg-cyan-700
+        w-10
+        br-10
+        rounded-full
+        hover:scale-110
+      "
       @click="updateValue(modelValue + 1)"
     >
       +
@@ -37,10 +45,5 @@ const updateValue = (value) => {
 input[type="number"] {
   appearance: none;
   -moz-appearance: textfield;
-  border: 1px solid gray;
-  @apply border-gray-500 w-10 text-center;
-}
-button {
-  border: 1px solid gray;
 }
 </style>

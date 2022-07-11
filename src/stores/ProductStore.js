@@ -1,4 +1,11 @@
-import { defineStore } from "pinia";
+import {
+  defineStore
+} from "pinia";
+import {
+  projectFirestore
+} from "@/Firebase/config";
+
+
 export const useProductStore = defineStore("ProductStore", {
   state: () => {
     return {
@@ -7,7 +14,14 @@ export const useProductStore = defineStore("ProductStore", {
   },
   actions: {
     async fill() {
-      this.products = (await import("@/data/products.json")).default;
+      const res = await projectFirestore.collection('products').get()
+      this.products = res.docs.map(doc => {
+        return {
+          ...doc.data(),
+          id: doc.id
+        }
+      })
+      // this.products = (await import("@/data/products.json")).default;
     },
   },
   // getters

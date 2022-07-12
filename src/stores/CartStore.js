@@ -12,11 +12,11 @@ import {
   useAuthUserStore
 } from "@/stores/AuthUserStore";
 export const useCartStore = defineStore("CartStore", {
-  // historyEnabled: true,
+  historyEnabled: true,
   state: () => {
     return {
-      // items: useLocalStorage("CartStore:items", [])
-      items: ("CartStore:items", [])
+      items: useLocalStorage("CartStore:items", []),
+      // items: ("CartStore:items", [])
     };
   },
   getters: {

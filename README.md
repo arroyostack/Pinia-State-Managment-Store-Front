@@ -1,12 +1,12 @@
-**
- Project description**
+
+ #Project description
 
     Follow up 'Pinia: The Enjoyable Vue Store' from 'vueschool.io' course. 
 
 
 Exploration into using Vue Pinia to create a dynamic store front and a shopping cart that display products and prices, store user product choices, add product price to total sum and provide a cart checkout method.
 
-Approach and technology brief
+#Approach and technology brief
 
 The project is built on Vite for Vue 3.2 that among other features, allows developers to use the Vue 3.2 script setup, offering a more efficient way to work with the Vue composition API.
 
@@ -27,7 +27,7 @@ Subsequently, I have implemented features such:
     A new design using Tailwind style library for Vue js with dark mode available. 
 
 
-Project Structure
+#Project Structure
 
 <img width="1227" alt="Vue 3 js : Pinia : Firebase" src="https://user-images.githubusercontent.com/109061270/178945482-c1f5dcea-13fd-4573-9949-c2f429067b24.png">
 
@@ -49,7 +49,7 @@ The products are shown into a horizontal carousel slider. For this tasks I have 
 
 Two modes (dark, light) are available, providing two contrast designs for night and day time.
 
-Conclusion
+#Conclusion
 
 Through this project, I have acquired all the necessary skills to build a simple front shop structure that is transferable to different shop approaches. The code is maintainable and scalable, and its web performance is optimized for all kinds of screens and browsers.
 

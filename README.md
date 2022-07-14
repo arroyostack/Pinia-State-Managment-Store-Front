@@ -1,5 +1,5 @@
-
- Project description
+**
+ Project description**
 
     Follow up 'Pinia: The Enjoyable Vue Store' from 'vueschool.io' course. 
 

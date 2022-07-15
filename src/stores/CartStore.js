@@ -15,8 +15,8 @@ export const useCartStore = defineStore("CartStore", {
   historyEnabled: true,
   state: () => {
     return {
-      items: useLocalStorage("CartStore:items", []),
-      // items: ("CartStore:items", [])
+      // items: useLocalStorage("CartStore:items", []),
+      items: ("CartStore:items", [])
     };
   },
   getters: {

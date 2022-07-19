@@ -23,7 +23,7 @@ const count = ref(0);
     <li>
       <div class="dark:text-white text-xl md:text-2xl pt-5">
         <div class="font-semibold text-4xl dark:text-white dark:cyan-700">
-          {{ product.name }} -${{ product.price }}
+          {{ product.name }} -{{ product.price }}$
         </div>
         <div
           class="
